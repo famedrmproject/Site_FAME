@@ -25,7 +25,7 @@ beforeEach(() => { eqCalls.length = 0; vi.clearAllMocks() })
 describe('/api/research/bookmarks', () => {
   it('GET requires a member and scopes to their own user_id', async () => {
     (requireMember as ReturnType<typeof vi.fn>).mockResolvedValue({ member: { id: 'u1' } })
-    const res = await GET(new NextRequest('http://localhost/x'))
+    const res = await GET()
     expect(res.status).toBe(200)
     expect(eqCalls).toContainEqual(['user_id', 'u1'])
   })
@@ -52,7 +52,7 @@ describe('/api/research/bookmarks', () => {
     })
 
     it('GET → 401, and never reaches the database', async () => {
-      const res = await GET(new NextRequest('http://localhost/x'))
+      const res = await GET()
       expect(res.status).toBe(401)
       expect(eqCalls).toEqual([])
     })

@@ -5,7 +5,7 @@ import { requireMember, authErrorResponse } from '@/lib/auth'
 // Bookmarks are private per-member data. This repo has no RLS policies, so the
 // scoping happens here: every query is explicitly filtered by the caller's own
 // user_id — never trust a user_id from the request body/query for reads.
-export async function GET(_req: NextRequest) {
+export async function GET() {
   let member
   try { ({ member } = await requireMember()) } catch (e) { return authErrorResponse(e) }
   const service = await createServiceClient()
