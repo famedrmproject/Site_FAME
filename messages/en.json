@@ -317,7 +317,23 @@
     "passwordTooWeak": "Password must be at least 8 characters, with an uppercase letter and a number",
     "activateButton": "Activate account",
     "activatedSuccess": "Account activated! Redirecting to login…",
-    "activationFailed": "Activation failed."
+    "activationFailed": "Activation failed.",
+    "noAccount": "No account yet?",
+    "requestAccess": "Request access",
+    "haveAccount": "Already have an account?",
+    "pendingApproval": "Your account request is awaiting approval by an administrator.",
+    "signupTitle": "Request an account",
+    "signupIntro": "Your account becomes active once an administrator approves it.",
+    "lab": "Lab",
+    "signupMessage": "Message for the administrators (optional)",
+    "signupSubmit": "Send request",
+    "signupSentTitle": "Request sent",
+    "signupSentBody": "An administrator needs to approve your account. You can then sign in with your email and password.",
+    "signupExists": "An account or request already exists for this email.",
+    "signupTooMany": "Too many requests. Please try again later.",
+    "signupFailed": "The request could not be sent. Please try again.",
+    "backHome": "Back to home",
+    "passwordRule": "At least 8 characters, including one uppercase letter and one digit."
   },
   "comments": {
     "firstName": "First name",
@@ -526,7 +542,14 @@
     "decisionSaved": "Decision saved",
     "converted": "Converted to subject",
     "actionError": "Action failed",
-    "researchLink": "Research radar"
+    "researchLink": "Research radar",
+    "requestsTitle": "Access requests",
+    "requestsLink": "Access requests",
+    "noRequests": "No pending requests.",
+    "approve": "Approve",
+    "requestApproved": "Account approved",
+    "requestRejected": "Request rejected",
+    "lab": "Lab"
   },
   "common": {
     "cancel": "Cancel",

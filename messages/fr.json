@@ -317,7 +317,23 @@
     "passwordTooWeak": "Le mot de passe doit comporter au moins 8 caractères, une majuscule et un chiffre",
     "activateButton": "Activer le compte",
     "activatedSuccess": "Compte activé ! Redirection vers la connexion…",
-    "activationFailed": "Échec de l'activation."
+    "activationFailed": "Échec de l'activation.",
+    "noAccount": "Pas encore de compte ?",
+    "requestAccess": "Demander un accès",
+    "haveAccount": "Déjà un compte ?",
+    "pendingApproval": "Votre demande de compte est en attente de validation par un administrateur.",
+    "signupTitle": "Demander un compte",
+    "signupIntro": "Votre compte sera actif dès qu'un administrateur l'aura validé.",
+    "lab": "Laboratoire",
+    "signupMessage": "Message pour les administrateurs (facultatif)",
+    "signupSubmit": "Envoyer la demande",
+    "signupSentTitle": "Demande envoyée",
+    "signupSentBody": "Un administrateur doit valider votre compte. Vous pourrez ensuite vous connecter avec votre email et votre mot de passe.",
+    "signupExists": "Un compte ou une demande existe déjà pour cet email.",
+    "signupTooMany": "Trop de demandes. Réessayez plus tard.",
+    "signupFailed": "La demande n'a pas pu être envoyée. Réessayez.",
+    "backHome": "Retour à l'accueil",
+    "passwordRule": "8 caractères minimum, dont une majuscule et un chiffre."
   },
   "comments": {
     "firstName": "Prénom",
@@ -526,7 +542,14 @@
     "decisionSaved": "Décision enregistrée",
     "converted": "Converti en sujet",
     "actionError": "Échec de l'action",
-    "researchLink": "Veille recherche"
+    "researchLink": "Veille recherche",
+    "requestsTitle": "Demandes d'accès",
+    "requestsLink": "Demandes d'accès",
+    "noRequests": "Aucune demande en attente.",
+    "approve": "Valider",
+    "requestApproved": "Compte validé",
+    "requestRejected": "Demande refusée",
+    "lab": "Laboratoire"
   },
   "common": {
     "cancel": "Annuler",
