@@ -13,7 +13,7 @@ Dernière vérification du contenu : 2026-10-14 (commit `a1e5f71`).
 
 | Élément | Dans le repo ? | Action à la migration |
 |---|---|---|
-| Code, migrations SQL (`supabase/migrations/001`→`017`), `vercel.json`, CI | Oui | Pousser le repo vers le nouveau compte GitHub |
+| Code, migrations SQL (`supabase/migrations/001`→`018`), `vercel.json`, CI | Oui | Pousser le repo vers le nouveau compte GitHub |
 | Variables d'environnement (clés, tokens) | **Non** (`.env*` ignoré, seul `.env.example` est suivi) | Tout re-saisir (section 3) |
 | Données Supabase (membres, sujets, tâches, fichiers, comptes Auth) | **Non** | Export/import de la base (section 2.4) |
 | Fichiers uploadés (bucket `subject-files`) | **Non** | À copier à part (section 2.5) |
@@ -51,11 +51,12 @@ Ordre recommandé : **1. GitHub → 2. Supabase → 3. Services tiers → 4. Ver
 `001_initial_schema` · `002_subject_difficulte_and_indexes` · `003_proposal_subject_link` · `004_transversal` ·
 `005_drop_password_hash` · `006_assistant_rag` · `007_match_rag_chunks` · `008_subject_vitrine` ·
 `009_subject_i18n` · `010_subject_files` · `011_subject_files_rag` · `012_task_i18n` · `013_subject_relations` ·
-`014_subject_file_confidentiel` · `015_security_hardening` · `016_subject_show_in_tasks` · `017_research_hub`
+`014_subject_file_confidentiel` · `015_security_hardening` · `016_subject_show_in_tasks` · `017_research_hub` · `018_observatory_storage`
 
 Ce que les migrations créent déjà (rien à faire à la main) :
 - Extensions `pgcrypto` et **`vector`** (pgvector, colonnes `vector(1536)`).
 - Bucket Storage **privé** `subject-files` (50 Mo, liste blanche MIME) — migration 010.
+- Bucket Storage **privé** `observatory` (vues de l'observatoire, lecture réservée aux membres activés) — migration 018. Son contenu se régénère depuis le serveur FAME (`publish_snapshots.py --all` du dépôt `fame_observatory`) : inutile de le copier.
 - Ligne `app_settings.assistant_enabled = true` — migration 006.
 - RLS activée sur toutes les tables ; l'accès passe par la clé service-role côté API.
 
@@ -101,6 +102,7 @@ Colonne **Où** : `Vercel` = à définir dans le projet Vercel (Production, et P
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | public | Vercel + Local | Supabase → Settings → API → anon key | `___` |
 | `SUPABASE_SERVICE_ROLE_KEY` | **secret** | Vercel + Local | Supabase → Settings → API → service_role | `___` |
 | `NEXT_PUBLIC_APP_URL` | public | Vercel + Local | URL finale du site, sans `/` final. **Sert aux liens d'activation des mails** : si absente, l'invitation de membres renvoie une erreur 500 | `___` |
+| `NEXT_PUBLIC_OBSERVATORY_URL` | public | Vercel | URL du dashboard de l'observatoire (projet Vercel séparé, dépôt `fame_observatory`). Absente : le bouton de l'accueil est masqué | `___` |
 | `RESEND_API_KEY` | **secret** | Vercel | resend.com → API Keys | `___` |
 | `EMAIL_FROM` | non | Vercel | Format `FAME <no-reply@votre-domaine>`. Le domaine **doit être vérifié dans Resend**. Défaut codé en dur : `noreply@fame-lab.eu` (probablement inutilisable sur un autre compte) | `___` |
 | `OPENAI_API_KEY` | **secret** | Vercel + Local | platform.openai.com → API keys. Sert à l'assistant Astra, aux embeddings, aux traductions et à la génération assistée | `___` |
@@ -129,7 +131,7 @@ Colonne **Où** : `Vercel` = à définir dans le projet Vercel (Production, et P
 
 ### 3.3 Règle de sécurité
 
-Seules `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` et `NEXT_PUBLIC_APP_URL` peuvent être préfixées `NEXT_PUBLIC_`. Tout le reste est **server-only**.
+Seules `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `NEXT_PUBLIC_APP_URL` et `NEXT_PUBLIC_OBSERVATORY_URL` peuvent être préfixées `NEXT_PUBLIC_`. Tout le reste est **server-only**.
 
 ### 3.4 Dropbox
 
@@ -176,7 +178,7 @@ Ce ne sont pas des secrets mais des valeurs liées à l'ancienne organisation. �
 ## 7. Séquence de mise en route (check-list finale)
 
 1. [ ] Nouveau repo GitHub poussé.
-2. [ ] Projet Supabase créé, migrations `001`→`017` appliquées, bucket `subject-files` présent.
+2. [ ] Projet Supabase créé, migrations `001`→`018` appliquées, buckets `subject-files` et `observatory` présents.
 3. [ ] Données + comptes Auth importés **ou** base vide + `npm run seed:admin`.
 4. [ ] Fichiers Storage copiés (si données migrées).
 5. [ ] Comptes tiers prêts : Resend (domaine vérifié), OpenAI (budget/limite), Dropbox, (Semantic Scholar optionnel).

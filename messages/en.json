@@ -20,7 +20,8 @@
     "cta": "Click on a lab to enter",
     "enteringLab": "Opening {city} lab…",
     "globeLabel": "Lab locations",
-    "researchCta": "Explore the research radar →"
+    "researchCta": "Explore the research radar →",
+    "observatoryCta": "Open the FAME observatory →"
   },
   "lab": {
     "title": {

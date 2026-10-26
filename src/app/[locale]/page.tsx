@@ -5,6 +5,7 @@ import { StarField } from '@/components/globe/StarField'
 import { Globe } from '@/components/globe/Globe'
 import { AssistantGlobeCTA } from '@/components/assistant/AssistantGlobeCTA'
 import { ResearchHubCTA } from '@/components/globe/ResearchHubCTA'
+import { ObservatoryCTA } from '@/components/globe/ObservatoryCTA'
 
 type Props = {
   params: Promise<{ locale: string }>
@@ -155,6 +156,9 @@ export default async function HomePage({ params }: Props) {
 
       {/* Research hub entry point — fixed, bottom-left (opposite the assistant widget) */}
       <ResearchHubCTA />
+
+      {/* Observatoire — projet Vercel séparé, au-dessus de l'entrée veille */}
+      <ObservatoryCTA href={process.env.NEXT_PUBLIC_OBSERVATORY_URL} />
     </div>
   )
 }
