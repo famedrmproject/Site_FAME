@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { useRouter, useParams } from 'next/navigation'
+import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 
 export default function LoginPage() {
@@ -23,7 +24,7 @@ export default function LoginPage() {
     })
     setLoading(false)
     if (!res.ok) {
-      setError(t('signInError'))
+      setError(res.status === 403 ? t('pendingApproval') : t('signInError'))
       return
     }
     router.push(`/${params.locale}`)
@@ -61,6 +62,12 @@ export default function LoginPage() {
         >
           {loading ? t('loading') : t('signIn')}
         </button>
+        <p className="text-sm text-fame-text-body text-center">
+          {t('noAccount')}{' '}
+          <Link href={`/${params.locale}/auth/signup`} className="text-fame-blue underline underline-offset-2">
+            {t('requestAccess')}
+          </Link>
+        </p>
       </form>
     </div>
   )

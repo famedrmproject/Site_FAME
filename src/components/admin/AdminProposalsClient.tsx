@@ -163,6 +163,13 @@ export function AdminProposalsClient() {
             >
               {t('researchLink')} →
             </a>
+            <a
+              href={`/${locale}/admin/requests`}
+              className="font-mono text-fame-blue"
+              style={adminLinkStyle}
+            >
+              {t('requestsLink')} →
+            </a>
           </div>
         </div>
 
